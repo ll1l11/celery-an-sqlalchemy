@@ -1,0 +1,8 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% block navbar %}
+<ul>
+    <li><a href="/">index</a></li>
+    <li><a href="{{ url_for('.add') }}">Add</a></li>
+</li>
+{% endblock %}

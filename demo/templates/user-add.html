@@ -1,0 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
+user-add
+{{ wtf.quick_form(form, method=(method or 'post'), id='wtf-form') }}
+{% endblock %}

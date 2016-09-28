@@ -3,3 +3,6 @@ python-memcached
 flask-cache
 pymysql
 flask-sqlalchemy
+flask-script
+flask-wtf
+flask-bootstrap

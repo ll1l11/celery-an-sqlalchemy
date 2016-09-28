@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block content %}
+ID: {{ user.id }} <br>
+name: {{ user.name }}<br>
+<a href="{{ url_for('.user', user_id=user.id) }}">Edit</a>
+{% endblock %}
