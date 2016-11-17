@@ -6,3 +6,4 @@ flask-sqlalchemy
 flask-script
 flask-wtf
 flask-bootstrap
+Celery

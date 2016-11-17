@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask_script import Manager
+from flask_script import Manager, Server
 
 from demo import app
 from demo.ext import db
@@ -22,6 +22,14 @@ def drop_all():
 def re_create_all():
     db.drop_all()
     db.create_all()
+
+
+manager.add_command('runserver', Server(
+    use_debugger=True,
+    use_reloader=True,
+    host='0.0.0.0',
+    port=8007)
+)
 
 
 if __name__ == '__main__':

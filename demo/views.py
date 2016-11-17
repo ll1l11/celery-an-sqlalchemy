@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from flask import Blueprint, render_template, jsonify, redirect, url_for
 from flask.views import MethodView
 
 from demo.ext import db
 from demo.models import User
 from demo.forms import UserForm
+from demo import tasks
 
 bp = Blueprint('user', __name__)
 
@@ -52,6 +54,19 @@ class AddView(MethodView):
             return jsonify(errors=form.errors)
 
 
+class TestView(MethodView):
+    def get(self):
+        u = User.query.get(1)
+        u.name = datetime.now().strftime('%H-%M-%S-%f')
+        u.save()
+        tasks.send_mail()
+
+        db.session.commit()
+        data = str(u)
+        return data
+
+
 bp.add_url_rule('/', view_func=IndexView.as_view('index'))
 bp.add_url_rule('/users/<int:user_id>', view_func=UserView.as_view('user'))
 bp.add_url_rule('/add', view_func=AddView.as_view('add'))
+bp.add_url_rule('/test', view_func=TestView.as_view('test'))
