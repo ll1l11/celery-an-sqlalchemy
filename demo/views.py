@@ -57,13 +57,18 @@ class AddView(MethodView):
 class TestView(MethodView):
     def get(self):
         u = User.query.get(1)
+        print(db.session)
         u.name = datetime.now().strftime('%H-%M-%S-%f')
         u.save()
+        # print('views: ', db.session)
         tasks.send_mail()
 
+        # print(u in db.session)
+        # # u.name = '1234'
         db.session.commit()
-        data = str(u)
-        return data
+        # data = str(u)
+        # return data
+        return '123'
 
 
 bp.add_url_rule('/', view_func=IndexView.as_view('index'))

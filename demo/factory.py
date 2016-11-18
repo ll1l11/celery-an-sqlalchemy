@@ -2,7 +2,7 @@
 from celery import Celery
 from flask import Flask
 
-from .ext import db
+from .ext import db, cache
 
 
 def create_app(config=None):
@@ -10,6 +10,7 @@ def create_app(config=None):
     app.config.from_object('demo.config')
 
     db.init_app(app)
+    cache.init_app(app)
 
     return app
 
